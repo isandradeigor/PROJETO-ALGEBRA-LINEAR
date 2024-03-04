@@ -11,7 +11,7 @@ public class App {
         char choiceType = scanner.next().charAt(0);
         if (choiceType == 'M' || choiceType == 'm') {
             // Operações com Matriz
-            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, 'D' para o método dot, 'G' para o método gauss ou 'N' para não fazer operação:");
+            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, 'D' para o método dot, 'G' para o método gauss, 'L' para o método solve ou 'N' para não fazer operação:");
             char choiceOperation = scanner.next().charAt(0);
 
             if (choiceOperation == 'T' || choiceOperation == 't') {
@@ -185,6 +185,35 @@ public class App {
                 Matrix.inserirMatriz(rows, cols, data);
                 System.out.println("Matriz:");
                 Matrix.apresentarMatriz(matrix);
+            }
+            else if (choiceOperation == 'L' || choiceOperation == 'l') {
+                // Resolver sistema de equações lineares
+                System.out.println("Digite o número de equações do sistema:");
+                int equations = scanner.nextInt();
+                System.out.println("Digite o número de incógnitas do sistema:");
+                int variables = scanner.nextInt();
+            
+                System.out.println("Digite os elementos da matriz aumentada linha por linha (separe os elementos por espaço):");
+                double[][] augmentedMatrixData = new double[equations][variables + 1];
+                for (int i = 0; i < equations; i++) {
+                    for (int j = 0; j <= variables; j++) {
+                        augmentedMatrixData[i][j] = scanner.nextDouble();
+                    }
+                }
+            
+                // CHAMAR A MATRIZ
+                Matrix augmentedMatrix = new Matrix(equations, variables + 1, augmentedMatrixData);
+            
+                try {
+                    // Resolver o sistema de equações lineares
+                    Matrix solution = LinearAlgebra.solve(augmentedMatrix);
+            
+                    // Exibir a solução
+                    System.out.println("Solução do sistema de equações lineares:");
+                    solution.apresentarMatriz(solution);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             } else {
                 System.out.println("Operação inválida. Por favor, digite 'T' para transpor, 'S' para somar, ou 'N' para não fazer operação.");
             }

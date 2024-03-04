@@ -177,4 +177,44 @@ public class LinearAlgebra {
 
         return new Matrix(rows, cols, data); // Retornar a matriz resultante da eliminação gaussiana
     }
+    //Solve
+    public static Matrix solve(Matrix augmentedMatrix) throws Exception {
+        // Realiza a eliminação gaussiana
+        Matrix gaussianEliminationResult = gauss(augmentedMatrix);
+    
+        int rows = gaussianEliminationResult.rows;
+        int cols = gaussianEliminationResult.cols;
+    
+        // Verifica se o sistema é consistente ou inconsistente
+        for (int i = 0; i < rows; i++) {
+            boolean allZero = true;
+            for (int j = 0; j < cols - 1; j++) {
+                if (gaussianEliminationResult.elements[i][j] != 0) {
+                    allZero = false;
+                    break;
+                }
+            }
+            if (allZero && gaussianEliminationResult.elements[i][cols - 1] != 0) {
+                throw new Exception("Sistema inconsistente - sem solução.");
+            }
+        }
+    
+        // Resolve o sistema retroativamente
+        double[] solution = new double[rows];
+        for (int i = rows - 1; i >= 0; i--) {
+            double sum = 0;
+            for (int j = i + 1; j < cols - 1; j++) {
+                sum += gaussianEliminationResult.elements[i][j] * solution[j];
+            }
+            solution[i] = (gaussianEliminationResult.elements[i][cols - 1] - sum) / gaussianEliminationResult.elements[i][i];
+        }
+    
+        // Cria a matriz de solução
+        double[][] solutionMatrix = new double[1][rows];
+        for (int i = 0; i < rows; i++) {
+            solutionMatrix[0][i] = solution[i];
+        }
+    
+        return new Matrix(1, rows, solutionMatrix);
+    }    
 }
