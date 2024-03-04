@@ -156,4 +156,25 @@ public class LinearAlgebra {
     
         return new Matrix(rowsA, colsB, resultData);
     }
+    //Eliminação Gaussiana
+    public static Matrix gauss(Matrix a) {
+        int rows = a.rows;
+        int cols = a.cols;
+        double[][] data = a.elements;
+
+        // Iterar sobre as colunas
+        for (int i = 0; i < cols - 1; i++) {
+            // Iterar sobre as linhas abaixo da linha atual
+            for (int j = i + 1; j < rows; j++) {
+                double factor = data[j][i] / data[i][i]; // Fator de multiplicação
+
+                // Iterar sobre as colunas, começando da coluna atual
+                for (int k = i; k < cols; k++) {
+                    data[j][k] -= factor * data[i][k]; // Realizar a operação de eliminação
+                }
+            }
+        }
+
+        return new Matrix(rows, cols, data); // Retornar a matriz resultante da eliminação gaussiana
+    }
 }

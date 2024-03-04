@@ -11,7 +11,7 @@ public class App {
         char choiceType = scanner.next().charAt(0);
         if (choiceType == 'M' || choiceType == 'm') {
             // Operações com Matriz
-            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, 'D' para o método dot, ou 'N' para não fazer operação:");
+            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, 'D' para o método dot, 'G' para o método gauss ou 'N' para não fazer operação:");
             char choiceOperation = scanner.next().charAt(0);
 
             if (choiceOperation == 'T' || choiceOperation == 't') {
@@ -151,7 +151,29 @@ public class App {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            }  else if (choiceOperation == 'N' || choiceOperation == 'n') {
+            }else if (choiceOperation == 'G' || choiceOperation == 'g') {
+                // Eliminação gaussiana
+                System.out.println("Digite o número de linhas e colunas da matriz:");
+                int rows = scanner.nextInt();
+                int cols = scanner.nextInt();
+                double[][] data = new double[rows][cols];
+            
+                //Inserir valores a matriz
+                Matrix.inserirMatriz(rows, cols, data);
+                // Criar a matriz
+                Matrix matrix = new Matrix(rows, cols, data);
+            
+                // Realizar a eliminação gaussiana
+                try {
+                    System.out.println("Matriz original:");
+                    Matrix.apresentarMatriz(matrix);
+                    Matrix resultMatrix = LinearAlgebra.gauss(matrix);
+                    System.out.println("Resultado da eliminação gaussiana:");
+                    Matrix.apresentarMatriz(resultMatrix);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }else if (choiceOperation == 'N' || choiceOperation == 'n') {
                 // Nenhuma operação, apenas exibir a matriz
                 System.out.println("Digite o número de linhas e colunas da matriz:");
                 int rows = scanner.nextInt();
