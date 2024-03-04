@@ -130,4 +130,30 @@ public class LinearAlgebra {
     
         return new Vector(dimA, resultData);
     }
+
+    //Método dot para multiplicação de duas matrizes
+    public static Matrix dot(Matrix a, Matrix b) throws Exception {
+        int rowsA = a.rows;
+        int colsA = a.cols;
+        int rowsB = b.rows;
+        int colsB = b.cols;
+    
+        if (colsA != rowsB) {
+            throw new Exception("O número de colunas da primeira matriz deve ser igual ao número de linhas da segunda matriz.");
+        }
+    
+        double[][] resultData = new double[rowsA][colsB];
+    
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                double sum = 0;
+                for (int k = 0; k < colsA; k++) {
+                    sum += a.elements[i][k] * b.elements[k][j];
+                }
+                resultData[i][j] = sum;
+            }
+        }
+    
+        return new Matrix(rowsA, colsB, resultData);
+    }
 }

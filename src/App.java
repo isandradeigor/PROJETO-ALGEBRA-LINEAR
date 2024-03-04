@@ -11,7 +11,7 @@ public class App {
         char choiceType = scanner.next().charAt(0);
         if (choiceType == 'M' || choiceType == 'm') {
             // Operações com Matriz
-            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, ou 'N' para não fazer operação:");
+            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, 'D' para o método dot, ou 'N' para não fazer operação:");
             char choiceOperation = scanner.next().charAt(0);
 
             if (choiceOperation == 'T' || choiceOperation == 't') {
@@ -119,7 +119,39 @@ public class App {
                 } else {
                     System.out.println("Operação inválida. Por favor, digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes.");
                 }
-            }else if (choiceOperation == 'N' || choiceOperation == 'n') {
+            }else if (choiceOperation == 'D' || choiceOperation == 'd') {
+                // Operação de multiplicação de matrizes
+                System.out.println("Digite o número de linhas e colunas da primeira matriz:");
+                int rows1 = scanner.nextInt();
+                int cols1 = scanner.nextInt();
+                double[][] data1 = new double[rows1][cols1];
+                Matrix matrix1 = new Matrix(rows1, cols1, data1);
+                Matrix.inserirMatriz(rows1, cols1, data1);
+            
+                System.out.println("Digite o número de linhas e colunas da segunda matriz:");
+                int rows2 = scanner.nextInt();
+                int cols2 = scanner.nextInt();
+                double[][] data2 = new double[rows2][cols2];
+                Matrix matrix2 = new Matrix(rows2, cols2, data2);
+                Matrix.inserirMatriz(rows2, cols2, data2);
+                try {
+                    // Verifica se o número de colunas da primeira matriz é igual ao número de linhas da segunda matriz
+                    if (cols1 != rows2) {
+                        throw new Exception("O número de colunas da primeira matriz deve ser igual ao número de linhas da segunda matriz.");
+                    }
+                    // Realiza a multiplicação de matrizes
+                    Matrix resultMatrix = LinearAlgebra.dot(matrix1, matrix2);
+                    System.out.println("Primeira matriz:");
+                    Matrix.apresentarMatriz(matrix1);
+                    System.out.println("Segunda matriz:");
+                    Matrix.apresentarMatriz(matrix2);
+                    // Apresenta o resultado
+                    System.out.println("Resultado da multiplicação de matrizes:");
+                    Matrix.apresentarMatriz(resultMatrix);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }  else if (choiceOperation == 'N' || choiceOperation == 'n') {
                 // Nenhuma operação, apenas exibir a matriz
                 System.out.println("Digite o número de linhas e colunas da matriz:");
                 int rows = scanner.nextInt();
