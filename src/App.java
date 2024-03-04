@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
     //Código principal
-    @SuppressWarnings("resource")
+    @SuppressWarnings({ "resource", "static-access" })
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         //---------------------------------------
@@ -200,10 +200,8 @@ public class App {
                         augmentedMatrixData[i][j] = scanner.nextDouble();
                     }
                 }
-            
                 // CHAMAR A MATRIZ
                 Matrix augmentedMatrix = new Matrix(equations, variables + 1, augmentedMatrixData);
-            
                 try {
                     // Resolver o sistema de equações lineares
                     Matrix solution = LinearAlgebra.solve(augmentedMatrix);

@@ -210,11 +210,11 @@ public class LinearAlgebra {
         }
     
         // Cria a matriz de solução
-        double[][] solutionMatrix = new double[1][rows];
+        double[][] solutionMatrix = new double[rows][1]; // Ajuste aqui para criar uma matriz com uma única coluna
         for (int i = 0; i < rows; i++) {
-            solutionMatrix[0][i] = solution[i];
+            solutionMatrix[i][0] = solution[i]; // Insere os valores na coluna da matriz
         }
     
-        return new Matrix(1, rows, solutionMatrix);
+        return new Matrix(rows, 1, solutionMatrix); // Retorna uma matriz com uma única coluna
     }    
 }
