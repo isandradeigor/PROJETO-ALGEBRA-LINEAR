@@ -20,7 +20,7 @@ public class Matrix {
     public static void inserirMatriz(int rows, int cols, double[][] elements){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                elements[i][j] = Math.random() * 10;
+                elements[i][j] = Math.round(Math.random() * 10);
             }
         }
     }

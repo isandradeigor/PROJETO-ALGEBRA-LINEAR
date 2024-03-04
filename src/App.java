@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class App {
     //Código principal
+    @SuppressWarnings("resource")
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         //---------------------------------------
@@ -10,7 +11,7 @@ public class App {
         char choiceType = scanner.next().charAt(0);
         if (choiceType == 'M' || choiceType == 'm') {
             // Operações com Matriz
-            System.out.println("Digite 'T' para transpor, 'S' para somar, ou 'N' para não fazer operação:");
+            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, ou 'N' para não fazer operação:");
             char choiceOperation = scanner.next().charAt(0);
 
             if (choiceOperation == 'T' || choiceOperation == 't') {
@@ -55,7 +56,70 @@ public class App {
                 Matrix.apresentarMatriz(matrix2);// apresenta a segunda matriz
                 System.out.println("Resultado da soma das matrizes:");
                 Matrix.apresentarMatriz(matrizSoma);
-            } else if (choiceOperation == 'N' || choiceOperation == 'n') {
+            }
+            else if(choiceOperation == 'E' || choiceOperation == 'e'){
+                System.out.println("Digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes:");
+                char operationChoice = scanner.next().charAt(0);
+                
+                if(operationChoice == 'S' || operationChoice == 's') {
+                    // Operação com Escalar
+                    System.out.println("Digite o escalar:");
+                    double scalar = scanner.nextDouble();
+                    System.out.println("Digite o número de linhas e colunas da matriz:");
+                    int rows = scanner.nextInt();
+                    int cols = scanner.nextInt();
+                    double[][] data = new double[rows][cols];
+                    // CHAMAR MATRIZ
+                    Matrix matrix1 = new Matrix(rows, cols, data);
+                    Matrix.inserirMatriz(rows, cols, data);
+                    
+                    // Multiplicação da matriz por um escalar
+                    Matrix resultMatrix = LinearAlgebra.times(scalar, matrix1);
+                    System.out.println("Escalar:");
+                    System.out.printf("%.0f%n", scalar);
+                    System.out.println("Matriz:");
+                    Matrix.apresentarMatriz(matrix1);
+                    // Apresenta o resultado
+                    System.out.println("Resultado da multiplicação por escalar:");
+                    Matrix.apresentarMatriz(resultMatrix);
+                } else if(operationChoice == 'M' || operationChoice == 'm') {
+                    // Multiplicação de Matrizes
+                    System.out.println("Digite o número de linhas e colunas da primeira matriz:");
+                    int rows1 = scanner.nextInt();
+                    int cols1 = scanner.nextInt();
+                    double[][] data1 = new double[rows1][cols1];
+                    Matrix matrix1 = new Matrix(rows1, cols1, data1);
+                    Matrix.inserirMatriz(rows1, cols1, data1);
+            
+                    System.out.println("Digite o número de linhas e colunas da segunda matriz:");
+                    int rows2 = scanner.nextInt();
+                    int cols2 = scanner.nextInt();
+                    double[][] data2 = new double[rows2][cols2];
+                    Matrix matrix2 = new Matrix(rows2, cols2, data2);
+                    Matrix.inserirMatriz(rows2, cols2, data2);
+                    
+                    try {
+                        // Verifica se as matrizes têm o mesmo tamanho
+                        if (rows1 != rows2 || cols1 != cols2) {
+                            throw new Exception("As matrizes devem ter o mesmo tamanho para serem multiplicadas elemento a elemento.");
+                        }
+                        
+                        // Realiza a multiplicação elemento a elemento
+                        Matrix resultMatrix = LinearAlgebra.times(matrix1, matrix2);
+                        System.out.println("Primeira matriz:");
+                        Matrix.apresentarMatriz(matrix1);// apresenta a primeira matriz
+                        System.out.println("Segunda matriz:");
+                        Matrix.apresentarMatriz(matrix2);// apresenta a segunda matriz
+                        // Apresenta o resultado
+                        System.out.println("Resultado da multiplicação elemento a elemento:");
+                        Matrix.apresentarMatriz(resultMatrix);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    System.out.println("Operação inválida. Por favor, digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes.");
+                }
+            }else if (choiceOperation == 'N' || choiceOperation == 'n') {
                 // Nenhuma operação, apenas exibir a matriz
                 System.out.println("Digite o número de linhas e colunas da matriz:");
                 int rows = scanner.nextInt();
@@ -72,7 +136,7 @@ public class App {
             }
         }else if (choiceType == 'V' || choiceType == 'v') {
             // Operações com Vetor
-            System.out.println("Digite 'T' para transpor, 'S' para somar, ou 'N' para não fazer operação:");
+            System.out.println("Digite 'T' para transpor, 'S' para somar, 'E' para fazer a multiplicação, ou 'N' para não fazer operação:");
             char choiceOperation = scanner.next().charAt(0);
 
             if (choiceOperation == 'T' || choiceOperation == 't') {
@@ -116,12 +180,67 @@ public class App {
                 vector2.apresentarVectorLinha(dim2, vetorData2);
                 System.out.println("Resultado da soma dos vetores:");
                 vetorSoma.apresentarVectorLinha(vetorSoma.dim, vetorSoma.elements);
-            } else if (choiceOperation == 'N' || choiceOperation == 'n') {
+            }else if(choiceOperation == 'E' || choiceOperation == 'e'){
+                System.out.println("Digite 'S' para multiplicação por escalar ou 'V' para multiplicação de vetores:");
+                char operationChoice = scanner.next().charAt(0);
+
+                if (operationChoice == 'S' || operationChoice == 's') {
+                    // Operação com Escalar
+                    System.out.println("Digite o escalar:");
+                    double scalar = scanner.nextDouble();
+                    System.out.println("Digite o tamanho do vetor:");
+                    int dim = scanner.nextInt();
+                    double[] vectorData = new double[dim];
+                    // CHAMAR VETOR
+                    Vector vector = new Vector(dim, vectorData);
+                    vector.inserirVector(dim, vectorData);
+                    
+                    // Multiplicação do vetor por um escalar
+                    Vector resultVector = LinearAlgebra.times(scalar, vector);
+                    System.out.println("Escalar:");
+                    System.out.printf("%.0f%n", scalar);
+                    System.out.println("Vetor:");
+                    vector.apresentarVectorLinha(dim, vectorData);
+                    // Apresenta o resultado
+                    System.out.println("Resultado da multiplicação por escalar:");
+                    resultVector.apresentarVectorLinha(dim, resultVector.elements);
+                }else if(operationChoice == 'V' || operationChoice == 'v'){
+                    System.out.println("Digite o tamanho do primeiro vetor:");
+                    int dim1 = scanner.nextInt();
+                    double[] vectorData1 = new double[dim1];
+                    Vector vector1 = new Vector(dim1, vectorData1);
+                    vector1.inserirVector(dim1, vectorData1);
+                    System.out.println("Digite o tamanho do segundo vetor:");
+                    int dim2 = scanner.nextInt();
+                    double[] vectorData2 = new double[dim2];
+                    Vector vector2 = new Vector(dim2, vectorData2);
+                    vector2.inserirVector(dim2, vectorData2);
+                    try {
+                        // Verifica se os vetores têm o mesmo tamanho
+                        if (dim1 != dim2) {
+                            throw new Exception("Os vetores devem ter o mesmo tamanho para serem multiplicados elemento a elemento.");
+                        }
+                
+                    // Realiza a multiplicação elemento a elemento
+                    Vector resultVector = LinearAlgebra.times(vector1, vector2);
+                    System.out.println("Primeiro vetor:");
+                    vector1.apresentarVectorLinha(dim1, vector1.elements);
+                    System.out.println("Segundo vetor:");
+                    vector2.apresentarVectorLinha(dim2, vector2.elements);
+                    // Apresenta o resultado
+                    System.out.println("Resultado da multiplicação elemento a elemento:");
+                    resultVector.apresentarVectorLinha(dim1, resultVector.elements);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    System.out.println("Operação inválida. Por favor, digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes.");
+                }
+            }else if (choiceOperation == 'N' || choiceOperation == 'n') {
                 // Nenhuma operação, apenas exibir o vetor
                 System.out.println("Digite o tamanho do vetor:");
                 int dim = scanner.nextInt();
                 double[] vetorData = new double[dim];
-
                 // CHAMAR VETOR
                 Vector vector = new Vector(dim, vetorData);
                 vector.inserirVector(dim, vetorData);
@@ -133,5 +252,6 @@ public class App {
         } else {
             System.out.println("Escolha inválida. Por favor, digite 'M' para matriz ou 'V' para vetor.");
         }
+        scanner.close();
     }
 }

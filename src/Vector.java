@@ -12,7 +12,7 @@ public class Vector {
     public void get(int i) {
         // Verifica se o índice está dentro dos limites do vetor
         if (i >= 0 && i < dim) {
-            System.out.printf("%.0f%n", elements[i - 1]);
+            System.out.printf("%.1f%n", elements[i - 1]);
         } else {
             // Índice fora dos limites, retornar um valor padrão ou lançar uma exceção
             System.out.println("Índice fora dos limites.");
@@ -32,7 +32,7 @@ public class Vector {
 
     public void inserirVector(int dim, double[] elements){
         for(int i = 0; i < dim; i++){
-            elements[i] = Math.random() * 10;
+            elements[i] = Math.round(Math.random() * 10);
         }
     }
     public void apresentarVectorLinha(int dim, double[] elements){
@@ -45,7 +45,7 @@ public class Vector {
     }
     public void apresentarVectorColuna(int dim, double[] elements){
         for(int i = 0; i < dim; i++){
-            System.out.printf("[%.0f]%n",elements[i]);
+            System.out.printf("[%.1f]%n",elements[i]);
         }
     }
 }
