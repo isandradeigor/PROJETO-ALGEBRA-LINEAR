@@ -178,7 +178,7 @@ public class LinearAlgebra {
         return new Matrix(rows, cols, data); // Retornar a matriz resultante da eliminação gaussiana
     }
     //Solve
-    public static Matrix solve(Matrix augmentedMatrix) throws Exception {
+    public static Matrix solve(Matrix augmentedMatrix) {
         // Realiza a eliminação gaussiana
         Matrix gaussianEliminationResult = gauss(augmentedMatrix);
     
@@ -186,6 +186,7 @@ public class LinearAlgebra {
         int cols = gaussianEliminationResult.cols;
     
         // Verifica se o sistema é consistente ou inconsistente
+        boolean consistent = true;
         for (int i = 0; i < rows; i++) {
             boolean allZero = true;
             for (int j = 0; j < cols - 1; j++) {
@@ -195,26 +196,45 @@ public class LinearAlgebra {
                 }
             }
             if (allZero && gaussianEliminationResult.elements[i][cols - 1] != 0) {
-                throw new Exception("Sistema inconsistente - sem solução.");
+                consistent = false;
+                break;
             }
         }
     
-        // Resolve o sistema retroativamente
-        double[] solution = new double[rows];
-        for (int i = rows - 1; i >= 0; i--) {
-            double sum = 0;
-            for (int j = i + 1; j < cols - 1; j++) {
-                sum += gaussianEliminationResult.elements[i][j] * solution[j];
+        // Resolve o sistema retroativamente se for consistente
+        if (consistent) {
+            double[] solution = new double[rows];
+            for (int i = rows - 1; i >= 0; i--) {
+                double sum = 0;
+                for (int j = i + 1; j < cols - 1; j++) {
+                    sum += gaussianEliminationResult.elements[i][j] * solution[j];
+                }
+                solution[i] = (gaussianEliminationResult.elements[i][cols - 1] - sum) / gaussianEliminationResult.elements[i][i];
             }
-            solution[i] = (gaussianEliminationResult.elements[i][cols - 1] - sum) / gaussianEliminationResult.elements[i][i];
-        }
     
-        // Cria a matriz de solução
-        double[][] solutionMatrix = new double[rows][1]; // Ajuste aqui para criar uma matriz com uma única coluna
-        for (int i = 0; i < rows; i++) {
-            solutionMatrix[i][0] = solution[i]; // Insere os valores na coluna da matriz
-        }
+            // Verifica se a solução contém NaN
+            boolean containsNaN = false;
+            for (double sol : solution) {
+                if (Double.isNaN(sol)) {
+                    containsNaN = true;
+                    break;
+                }
+            }
     
-        return new Matrix(rows, 1, solutionMatrix); // Retorna uma matriz com uma única coluna
-    }    
+            // Retorna uma mensagem indicando se a solução é válida ou não
+            if (containsNaN) {
+                System.out.println("A solução é indefinida (contém valores NaN).");
+                return null; // ou retorne uma matriz especial indicando que a solução é inválida
+            } else {
+                double[][] solutionMatrix = new double[rows][1];
+                for (int i = 0; i < rows; i++) {
+                    solutionMatrix[i][0] = solution[i];
+                }
+                return new Matrix(rows, 1, solutionMatrix);
+            }
+        } else {
+            System.out.println("O sistema é inconsistente - sem solução.");
+            return null; // ou retorne uma matriz especial indicando que o sistema é inconsistente
+        }
+    }        
 }
