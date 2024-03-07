@@ -13,9 +13,11 @@ public class Vector {
     // Método para obter o valor de um elemento do vetor
     public void get(int i) {
         // Verifica se o índice está dentro dos limites do vetor
-        if (i >= 0 && i < dim) {
+        if (i >= 0 && i <= dim) {
             System.out.printf("%.3f%n", elements[i - 1]);
-        } else {
+            
+        }
+        else{
             // Índice fora dos limites, retornar um valor padrão ou lançar uma exceção
             System.out.println("Índice fora dos limites.");
         }
@@ -24,14 +26,13 @@ public class Vector {
     // Método para atribuir um valor a um elemento do vetor
     public void set(int i, double value) {
         // Verifica se o índice está dentro dos limites do vetor
-        if (i >= 0 && i < dim) {
+        if (i >= 0 && i <= dim) {
             elements[i - 1] = value;
         } else {
             // Índice fora dos limites, realizar uma ação apropriada
             System.out.println("Índice fora dos limites. Não foi possível atribuir o valor.");
         }
     }
-
     public void inserirVector(int dim, double[] elements){
         System.out.println("Insira os elementos do vetor:");
         for(int i = 0; i < dim; i++){

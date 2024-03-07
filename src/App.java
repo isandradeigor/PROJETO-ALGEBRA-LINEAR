@@ -390,6 +390,28 @@ public class App {
                 vector.apresentarVectorLinha(dim, vetorData);
                 System.out.println("Vetor transposto:");
                 vetorTransposto.apresentarVectorColuna(dim, vetorTransposto.elements);
+                while (true) {
+                    System.out.println("Quer usar GET, SET ou SAIR? (Digite 'N' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G")) {
+                        System.out.println("Digite o índice que deseja obter:");
+                        int indice = scanner.nextInt();
+                        vetorTransposto.get(indice);
+                    } else if (choice.equals("S")) {
+                        System.out.println("Digite o índice que deseja setar:");
+                        int indice = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        vetorTransposto.set(indice, valor);
+                        System.out.println("Vetor atualizado:");
+                        vetorTransposto.apresentarVectorColuna(dim, vetorTransposto.elements);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                    }
+                }
             } else if (choiceOperation == 'S' || choiceOperation == 's') {
                 // Soma de Vetores
                 System.out.println("Digite o tamanho do primeiro vetor:");
@@ -415,6 +437,28 @@ public class App {
                 vector2.apresentarVectorLinha(dim2, vetorData2);
                 System.out.println("Resultado da soma dos vetores:");
                 vetorSoma.apresentarVectorLinha(vetorSoma.dim, vetorSoma.elements);
+                while (true) {
+                    System.out.println("Quer usar GET, SET ou SAIR? (Digite 'N' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G")) {
+                        System.out.println("Digite o índice que deseja obter:");
+                        int indice = scanner.nextInt();
+                        vetorSoma.get(indice);
+                    } else if (choice.equals("S")) {
+                        System.out.println("Digite o índice que deseja setar:");
+                        int indice = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        vetorSoma.set(indice, valor);
+                        System.out.println("Vetor atualizado:");
+                        vetorSoma.apresentarVectorLinha(vetorSoma.dim, vetorSoma.elements);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                    }
+                }
             }else if(choiceOperation == 'E' || choiceOperation == 'e'){
                 System.out.println("Digite 'S' para multiplicação por escalar ou 'V' para multiplicação de vetores:");
                 char operationChoice = scanner.next().charAt(0);
@@ -439,6 +483,28 @@ public class App {
                     // Apresenta o resultado
                     System.out.println("Resultado da multiplicação por escalar:");
                     resultVector.apresentarVectorLinha(dim, resultVector.elements);
+                    while (true) {
+                        System.out.println("Quer usar GET, SET ou SAIR? (Digite 'N' para sair)");
+                        String choice = scanner.next().toUpperCase();
+                        if (choice.equals("G")) {
+                            System.out.println("Digite o índice que deseja obter:");
+                            int indice = scanner.nextInt();
+                            resultVector.get(indice);
+                        } else if (choice.equals("S")) {
+                            System.out.println("Digite o índice que deseja setar:");
+                            int indice = scanner.nextInt();
+                            System.out.println("Digite o novo valor:");
+                            double valor = scanner.nextDouble();
+                            resultVector.set(indice, valor);
+                            System.out.println("Vetor atualizado:");
+                            resultVector.apresentarVectorLinha(dim, resultVector.elements);
+                        } else if (choice.equals("N")) {
+                            System.out.println("Saindo...");
+                            break;
+                        } else {
+                            System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        }
+                    }
                 }else if(operationChoice == 'V' || operationChoice == 'v'){
                     System.out.println("Digite o tamanho do primeiro vetor:");
                     int dim1 = scanner.nextInt();
@@ -465,6 +531,28 @@ public class App {
                     // Apresenta o resultado
                     System.out.println("Resultado da multiplicação elemento a elemento:");
                     resultVector.apresentarVectorLinha(dim1, resultVector.elements);
+                    while (true) {
+                        System.out.println("Quer usar GET, SET ou SAIR? (Digite 'N' para sair)");
+                        String choice = scanner.next().toUpperCase();
+                        if (choice.equals("G")) {
+                            System.out.println("Digite o índice que deseja obter:");
+                            int indice = scanner.nextInt();
+                            resultVector.get(indice);
+                        } else if (choice.equals("S")) {
+                            System.out.println("Digite o índice que deseja setar:");
+                            int indice = scanner.nextInt();
+                            System.out.println("Digite o novo valor:");
+                            double valor = scanner.nextDouble();
+                            resultVector.set(indice, valor);
+                            System.out.println("Vetor atualizado:");
+                            resultVector.apresentarVectorLinha(dim1, resultVector.elements);
+                        } else if (choice.equals("N")) {
+                            System.out.println("Saindo...");
+                            break;
+                        } else {
+                            System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        }
+                    }
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -481,6 +569,28 @@ public class App {
                 vector.inserirVector(dim, vetorData);
                 System.out.println("Vetor:");
                 vector.apresentarVectorLinha(dim, vetorData);
+                while (true) {
+                    System.out.println("Quer usar GET, SET ou SAIR? (Digite 'N' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G")) {
+                        System.out.println("Digite o índice que deseja obter:");
+                        int indice = scanner.nextInt();
+                        vector.get(indice);
+                    } else if (choice.equals("S")) {
+                        System.out.println("Digite o índice que deseja setar:");
+                        int indice = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        vector.set(indice, valor);
+                        System.out.println("Vetor atualizado:");
+                        vector.apresentarVectorLinha(dim, vetorData);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                    }
+                }
             } else {
                 System.out.println("Operação inválida. Por favor, digite 'T' para transpor, 'S' para somar, ou 'N' para não fazer operação.");
             }
