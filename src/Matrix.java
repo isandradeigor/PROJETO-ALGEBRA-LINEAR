@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Matrix {
     int rows;
     int cols;
@@ -10,17 +12,19 @@ public class Matrix {
     }
     // OBTER E RETORNAR O VALOR DE UM ELEMENTO
     public void get(int i, int j) {
-        System.out.printf("%.0f%n",elements[i - 1][j - 1]);
+        System.out.printf("%.3f%n",elements[i - 1][j - 1]);
     }
     // SETAR UM NOVO VALOR A UM ELEMENTO
     public void set(int i, int j, double value) {
         elements[i - 1][j - 1] = value;
     }
     //DAR VALOR A MATRIZ
-    public static void inserirMatriz(int rows, int cols, double[][] elements){
+    public static void inserirMatriz(int rows, int cols, double[][] elements, Scanner scanner) {
+        System.out.println("Insira os elementos da matriz:");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                elements[i][j] = Math.round(Math.random() * 10);
+                System.out.print("Elemento [" + (i + 1) +"][" + (j + 1) + "]: ");
+                elements[i][j] = scanner.nextDouble();
             }
         }
     }
@@ -32,9 +36,9 @@ public class Matrix {
         System.out.printf("-----------%n");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                System.out.printf("%.0f ", elements[i][j]);
+                System.out.printf("%.3f ", elements[i][j]);
             }
-            System.out.println(" ");
+            System.out.println("");
         }
         System.out.printf("-----------%n");
     }
