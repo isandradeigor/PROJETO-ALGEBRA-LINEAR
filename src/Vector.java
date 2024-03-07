@@ -1,7 +1,9 @@
+import java.util.Scanner;
+
 public class Vector {
     int dim;
     double[] elements;
-
+    Scanner scanner = new Scanner(System.in);
     // Construtor
     public Vector(int dim, double[] elements) {
         this.dim = dim;
@@ -12,7 +14,7 @@ public class Vector {
     public void get(int i) {
         // Verifica se o índice está dentro dos limites do vetor
         if (i >= 0 && i < dim) {
-            System.out.printf("%.0f%n", elements[i - 1]);
+            System.out.printf("%.3f%n", elements[i - 1]);
         } else {
             // Índice fora dos limites, retornar um valor padrão ou lançar uma exceção
             System.out.println("Índice fora dos limites.");
@@ -31,21 +33,22 @@ public class Vector {
     }
 
     public void inserirVector(int dim, double[] elements){
+        System.out.println("Insira os elementos do vetor:");
         for(int i = 0; i < dim; i++){
-            elements[i] = Math.round(Math.random() * 10);
+            elements[i] = scanner.nextDouble();
         }
     }
     public void apresentarVectorLinha(int dim, double[] elements){
         System.out.printf("[ ");
         for(int i = 0; i < dim; i++){
-            System.out.printf("%.0f ",elements[i]);
+            System.out.printf("%.3f ",elements[i]);
         }
         System.out.printf("]%n");
 
     }
     public void apresentarVectorColuna(int dim, double[] elements){
         for(int i = 0; i < dim; i++){
-            System.out.printf("[%.0f]%n",elements[i]);
+            System.out.printf("[%.3f]%n",elements[i]);
         }
     }
 }

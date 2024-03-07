@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class App {
-    //Código principal
+    // Código principal
     @SuppressWarnings({ "resource", "static-access" })
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -20,10 +20,10 @@ public class App {
                 int rows = scanner.nextInt();
                 int cols = scanner.nextInt();
                 double[][] data = new double[rows][cols];
-
+                scanner.nextLine();
                 // CHAMAR MATRIZ
                 Matrix matrix = new Matrix(rows, cols, data);
-                Matrix.inserirMatriz(rows, cols, data);
+                Matrix.inserirMatriz(rows, cols, data, scanner);
                 System.out.println("Matriz original:");
                 Matrix.apresentarMatriz(matrix);
 
@@ -31,6 +31,33 @@ public class App {
                 Matrix matrizTransposta = LinearAlgebra.transpose(matrix);
                 System.out.println("Matriz transposta:");
                 Matrix.apresentarMatriz(matrizTransposta);
+                //---
+                while (true) {
+                    System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G") || choice.equals('g')) {
+                        System.out.println("Digite o número da linha e coluna que deseja obter:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                        matrizTransposta.get(linha, coluna);
+                    } else if (choice.equals("S") || choice.equals("s")) {
+                        System.out.println("Digite o número da linha e coluna que deseja setar:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        matrizTransposta.set(linha, coluna, valor);
+                        System.out.println("Matriz atualizada:");
+                        Matrix.apresentarMatriz(matrizTransposta);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                    }
+                }
+                //---
             } else if (choiceOperation == 'S' || choiceOperation == 's') {
                 // Soma de Matrizes
                 System.out.println("Digite o número de linhas e colunas da primeira matriz:");
@@ -40,14 +67,14 @@ public class App {
 
                 // CHAMAR PRIMEIRA MATRIZ
                 Matrix matrix1 = new Matrix(rows1, cols1, data1);
-                Matrix.inserirMatriz(rows1, cols1, data1);
+                Matrix.inserirMatriz(rows1, cols1, data1, scanner);
                 System.out.println("Digite o número de linhas e colunas da segunda matriz:");
                 int rows2 = scanner.nextInt();
                 int cols2 = scanner.nextInt();
                 double[][] data2 = new double[rows2][cols2];
                 // CHAMAR SEGUNDA MATRIZ
                 Matrix matrix2 = new Matrix(rows2, cols2, data2);
-                Matrix.inserirMatriz(rows2, cols2, data2);
+                Matrix.inserirMatriz(rows2, cols2, data2, scanner);
                 // Somar as duas matrizes e imprimir o resultado
                 Matrix matrizSoma = LinearAlgebra.sum(matrix1, matrix2);
                 System.out.println("Primeira matriz:");
@@ -56,6 +83,31 @@ public class App {
                 Matrix.apresentarMatriz(matrix2);// apresenta a segunda matriz
                 System.out.println("Resultado da soma das matrizes:");
                 Matrix.apresentarMatriz(matrizSoma);
+                while (true) {
+                    System.out.println("Quer usar GET ou SET? (Digite 'N' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G")) {
+                        System.out.println("Digite o número da linha e coluna que deseja obter:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                        matrizSoma.get(linha, coluna);
+                    } else if (choice.equals("S")) {
+                        System.out.println("Digite o número da linha e coluna que deseja setar:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        matrizSoma.set(linha, coluna, valor);
+                        System.out.println("Matriz atualizada:");
+                        Matrix.apresentarMatriz(matrizSoma);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
+                    }
+                }
             }
             else if(choiceOperation == 'E' || choiceOperation == 'e'){
                 System.out.println("Digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes:");
@@ -71,7 +123,7 @@ public class App {
                     double[][] data = new double[rows][cols];
                     // CHAMAR MATRIZ
                     Matrix matrix1 = new Matrix(rows, cols, data);
-                    Matrix.inserirMatriz(rows, cols, data);
+                    Matrix.inserirMatriz(rows, cols, data, scanner);
                     
                     // Multiplicação da matriz por um escalar
                     Matrix resultMatrix = LinearAlgebra.times(scalar, matrix1);
@@ -82,6 +134,32 @@ public class App {
                     // Apresenta o resultado
                     System.out.println("Resultado da multiplicação por escalar:");
                     Matrix.apresentarMatriz(resultMatrix);
+                    while (true) {
+                        System.out.println("Quer usar GET ou SET? (Digite 'N' para sair)");
+                        String choice = scanner.next().toUpperCase();
+                        if (choice.equals("G")) {
+                            System.out.println("Digite o número da linha e coluna que deseja obter:");
+                            int linha = scanner.nextInt();
+                            int coluna = scanner.nextInt();
+                            System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                            resultMatrix.get(linha, coluna);
+                        } else if (choice.equals("S")) {
+                            System.out.println("Digite o número da linha e coluna que deseja setar:");
+                            int linha = scanner.nextInt();
+                            int coluna = scanner.nextInt();
+                            System.out.println("Digite o novo valor:");
+                            double valor = scanner.nextDouble();
+                            resultMatrix.set(linha, coluna, valor);
+                            System.out.println("Matriz atualizada:");
+                            Matrix.apresentarMatriz(resultMatrix);
+                        } else if (choice.equals("N")) {
+                            System.out.println("Saindo...");
+                            break;
+                        } else {
+                            System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
+                        }
+                    }
+                    //---------------
                 } else if(operationChoice == 'M' || operationChoice == 'm') {
                     // Multiplicação de Matrizes
                     System.out.println("Digite o número de linhas e colunas da primeira matriz:");
@@ -89,14 +167,14 @@ public class App {
                     int cols1 = scanner.nextInt();
                     double[][] data1 = new double[rows1][cols1];
                     Matrix matrix1 = new Matrix(rows1, cols1, data1);
-                    Matrix.inserirMatriz(rows1, cols1, data1);
+                    Matrix.inserirMatriz(rows1, cols1, data1, scanner);
             
                     System.out.println("Digite o número de linhas e colunas da segunda matriz:");
                     int rows2 = scanner.nextInt();
                     int cols2 = scanner.nextInt();
                     double[][] data2 = new double[rows2][cols2];
                     Matrix matrix2 = new Matrix(rows2, cols2, data2);
-                    Matrix.inserirMatriz(rows2, cols2, data2);
+                    Matrix.inserirMatriz(rows2, cols2, data2, scanner);
                     
                     try {
                         // Verifica se as matrizes têm o mesmo tamanho
@@ -113,12 +191,38 @@ public class App {
                         // Apresenta o resultado
                         System.out.println("Resultado da multiplicação elemento a elemento:");
                         Matrix.apresentarMatriz(resultMatrix);
+                        while (true) {
+                            System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                            String choice = scanner.next().toUpperCase();
+                            if (choice.equals("G")) {
+                                System.out.println("Digite o número da linha e coluna que deseja obter:");
+                                int linha = scanner.nextInt();
+                                int coluna = scanner.nextInt();
+                                System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                                resultMatrix.get(linha, coluna);
+                            } else if (choice.equals("S")) {
+                                System.out.println("Digite o número da linha e coluna que deseja setar:");
+                                int linha = scanner.nextInt();
+                                int coluna = scanner.nextInt();
+                                System.out.println("Digite o novo valor:");
+                                double valor = scanner.nextDouble();
+                                resultMatrix.set(linha, coluna, valor);
+                                System.out.println("Matriz atualizada:");
+                                Matrix.apresentarMatriz(resultMatrix);
+                            } else if (choice.equals("N")) {
+                                System.out.println("Saindo...");
+                                break;
+                            } else {
+                                System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
+                            }
+                        }
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 } else {
                     System.out.println("Operação inválida. Por favor, digite 'S' para multiplicação por escalar ou 'M' para multiplicação de matrizes.");
                 }
+                
             }else if (choiceOperation == 'D' || choiceOperation == 'd') {
                 // Operação de multiplicação de matrizes
                 System.out.println("Digite o número de linhas e colunas da primeira matriz:");
@@ -126,14 +230,14 @@ public class App {
                 int cols1 = scanner.nextInt();
                 double[][] data1 = new double[rows1][cols1];
                 Matrix matrix1 = new Matrix(rows1, cols1, data1);
-                Matrix.inserirMatriz(rows1, cols1, data1);
+                Matrix.inserirMatriz(rows1, cols1, data1, scanner);
             
                 System.out.println("Digite o número de linhas e colunas da segunda matriz:");
                 int rows2 = scanner.nextInt();
                 int cols2 = scanner.nextInt();
                 double[][] data2 = new double[rows2][cols2];
                 Matrix matrix2 = new Matrix(rows2, cols2, data2);
-                Matrix.inserirMatriz(rows2, cols2, data2);
+                Matrix.inserirMatriz(rows2, cols2, data2, scanner);
                 try {
                     // Verifica se o número de colunas da primeira matriz é igual ao número de linhas da segunda matriz
                     if (cols1 != rows2) {
@@ -148,6 +252,31 @@ public class App {
                     // Apresenta o resultado
                     System.out.println("Resultado da multiplicação de matrizes:");
                     Matrix.apresentarMatriz(resultMatrix);
+                    while (true) {
+                        System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                        String choice = scanner.next().toUpperCase();
+                        if (choice.equals("G")) {
+                            System.out.println("Digite o número da linha e coluna que deseja obter:");
+                            int linha = scanner.nextInt();
+                            int coluna = scanner.nextInt();
+                            System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                            resultMatrix.get(linha, coluna);
+                        } else if (choice.equals("S")) {
+                            System.out.println("Digite o número da linha e coluna que deseja setar:");
+                            int linha = scanner.nextInt();
+                            int coluna = scanner.nextInt();
+                            System.out.println("Digite o novo valor:");
+                            double valor = scanner.nextDouble();
+                            resultMatrix.set(linha, coluna, valor);
+                            System.out.println("Matriz atualizada:");
+                            Matrix.apresentarMatriz(resultMatrix);
+                        } else if (choice.equals("N")) {
+                            System.out.println("Saindo...");
+                            break;
+                        } else {
+                            System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
+                        }
+                    }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -159,7 +288,7 @@ public class App {
                 double[][] data = new double[rows][cols];
             
                 //Inserir valores a matriz
-                Matrix.inserirMatriz(rows, cols, data);
+                Matrix.inserirMatriz(rows, cols, data, scanner);
                 // Criar a matriz
                 Matrix matrix = new Matrix(rows, cols, data);
             
@@ -182,9 +311,34 @@ public class App {
 
                 // CHAMAR MATRIZ
                 Matrix matrix = new Matrix(rows, cols, data);
-                Matrix.inserirMatriz(rows, cols, data);
+                Matrix.inserirMatriz(rows, cols, data, scanner);
                 System.out.println("Matriz:");
                 Matrix.apresentarMatriz(matrix);
+                while (true) {
+                    System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                    String choice = scanner.next().toUpperCase();
+                    if (choice.equals("G")) {
+                        System.out.println("Digite o número da linha e coluna que deseja obter:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.print("Valor na posição (" + linha + ", " + coluna + "): ");
+                        matrix.get(linha, coluna);
+                    } else if (choice.equals("S")) {
+                        System.out.println("Digite o número da linha e coluna que deseja setar:");
+                        int linha = scanner.nextInt();
+                        int coluna = scanner.nextInt();
+                        System.out.println("Digite o novo valor:");
+                        double valor = scanner.nextDouble();
+                        matrix.set(linha, coluna, valor);
+                        System.out.println("Matriz atualizada:");
+                        Matrix.apresentarMatriz(matrix);
+                    } else if (choice.equals("N")) {
+                        System.out.println("Saindo...");
+                        break;
+                    } else {
+                        System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
+                    }
+                }
             }
             else if (choiceOperation == 'L' || choiceOperation == 'l') {
                 // Resolver sistema de equações lineares
