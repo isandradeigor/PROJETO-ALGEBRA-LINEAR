@@ -1,18 +1,15 @@
-## Getting Started
+## Projeto Algebra Linear
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Esse é o projeto AV1 de Algebra e Geometria computacional, "CENÁRIO 1".
 
-## Folder Structure
+## Estrutura de Código:
 
-The workspace contains two folders by default, where:
+Main: Código principal que abrange todas as classe. Esse vai ser o OUTPUT.
+Class Matrix: Possui todos os requisitos pedidos para a realização da matriz, incluindo método GET e SET, a formação e a apresentação das mesmas.
+Class Vector: Possui todos os requisitos pedidos para a realização de vetores, incluindo método GET e SET, a formação e a apresentação das mesmas.
+Class LinearAlgebra: Métodos incluem; Transpose, para achar a matriz ou vetor transposto; Sum, para soma de duas matrizes/vetores; Times para multiplicação dos elementos da matriz/vetor por escalar (número individual) ou por outra do mesmo tamanho; Gauss, realiza a eliminação gaussiana de uma matriz; e Solve, para realizar uma operação de sistemas lineares.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Dependencias
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- JAVA SDK
+- Extension Pack for JAVA

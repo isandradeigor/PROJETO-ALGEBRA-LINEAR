@@ -359,10 +359,11 @@ public class App {
                 try {
                     // Resolver o sistema de equações lineares
                     Matrix solution = LinearAlgebra.solve(augmentedMatrix);
-            
                     // Exibir a solução
-                    System.out.println("Solução do sistema de equações lineares:");
-                    solution.apresentarMatriz(solution);
+                    if(solution != null){
+                        System.out.println("Solução do sistema de equações lineares:");
+                        solution.apresentarMatriz(solution);
+                    }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
