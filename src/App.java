@@ -33,7 +33,7 @@ public class App {
                 Matrix.apresentarMatriz(matrizTransposta);
                 //---
                 while (true) {
-                    System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                    System.out.println("Quer usar GET ou SET? (Digite 'N' para sair)");
                     String choice = scanner.next().toUpperCase();
                     if (choice.equals("G") || choice.equals('g')) {
                         System.out.println("Digite o número da linha e coluna que deseja obter:");
@@ -54,7 +54,7 @@ public class App {
                         System.out.println("Saindo...");
                         break;
                     } else {
-                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
                     }
                 }
                 //---
@@ -192,7 +192,7 @@ public class App {
                         System.out.println("Resultado da multiplicação elemento a elemento:");
                         Matrix.apresentarMatriz(resultMatrix);
                         while (true) {
-                            System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                            System.out.println("Quer usar GET ou SET? (Digite 'N' para sair)");
                             String choice = scanner.next().toUpperCase();
                             if (choice.equals("G")) {
                                 System.out.println("Digite o número da linha e coluna que deseja obter:");
@@ -315,7 +315,7 @@ public class App {
                 System.out.println("Matriz:");
                 Matrix.apresentarMatriz(matrix);
                 while (true) {
-                    System.out.println("Quer usar GET ou SET? (Digite 'S' para sair)");
+                    System.out.println("Quer usar GET ou SET? (Digite 'N' para sair)");
                     String choice = scanner.next().toUpperCase();
                     if (choice.equals("G")) {
                         System.out.println("Digite o número da linha e coluna que deseja obter:");
@@ -409,7 +409,7 @@ public class App {
                         System.out.println("Saindo...");
                         break;
                     } else {
-                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'N' para sair.");
                     }
                 }
             } else if (choiceOperation == 'S' || choiceOperation == 's') {
@@ -456,7 +456,7 @@ public class App {
                         System.out.println("Saindo...");
                         break;
                     } else {
-                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
                     }
                 }
             }else if(choiceOperation == 'E' || choiceOperation == 'e'){
@@ -502,7 +502,7 @@ public class App {
                             System.out.println("Saindo...");
                             break;
                         } else {
-                            System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                            System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'N' para sair.");
                         }
                     }
                 }else if(operationChoice == 'V' || operationChoice == 'v'){
@@ -550,7 +550,7 @@ public class App {
                             System.out.println("Saindo...");
                             break;
                         } else {
-                            System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                            System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
                         }
                     }
                     } catch (Exception e) {
@@ -588,7 +588,7 @@ public class App {
                         System.out.println("Saindo...");
                         break;
                     } else {
-                        System.out.println("Operação inválida. Por favor, digite 'GET', 'SET' ou 'S' para sair.");
+                        System.out.println("Operação inválida. Por favor, digite 'G', 'S' ou 'N' para sair.");
                     }
                 }
             } else {
