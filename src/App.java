@@ -322,8 +322,8 @@ public class App {
                 try {
                     System.out.println("Matriz original:");
                     Matrix.apresentarMatriz(matrix);
-                    Matrix resultMatrix = LinearAlgebra.gaussJordan(matrix);
-                    System.out.println("Resultado da eliminação Gauss-Jordan:");
+                    Matrix resultMatrix = LinearAlgebra.gauss(matrix);
+                    System.out.println("Resultado da eliminação Gauss");
                     Matrix.apresentarMatriz(resultMatrix);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
